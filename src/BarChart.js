@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3'
+import { API } from 'aws-amplify';
 
 class BarChart extends Component {
-    componentDidMount() {
-        this.drawChart();
+    async componentDidMount() {
+        await this.drawChart();
     }
-    drawChart() {
-        const data = [12, 5, 6, 6, 9, 10];
+    async drawChart() {
+
+        const data = await API.get('apifd318e7f', '/items', {
+            queryStringParameters: {
+            }
+          });
 
         const svg = d3.select("body")
                     .append("svg")

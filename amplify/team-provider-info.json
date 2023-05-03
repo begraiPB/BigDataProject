@@ -9,11 +9,26 @@
       "UnauthRoleName": "amplify-amplifyfbf8f167262e4-staging-44239-unauthRole",
       "StackName": "amplify-amplifyfbf8f167262e4-staging-44239",
       "StackId": "arn:aws:cloudformation:us-east-1:678949358090:stack/amplify-amplifyfbf8f167262e4-staging-44239/ef3c0020-e96c-11ed-ad9f-0e6a44215d1f",
-      "AmplifyAppId": "d2zxch3ssdb5g0"
+      "AmplifyAppId": "d2zxch3ssdb5g0",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-amplifyfbf8f167262e4-staging-44239-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "bigdataproject8635ff21": {}
+      },
+      "function": {
+        "bigdataproject625fdae0": {},
+        "bigdataproject001432b0": {
+          "deploymentBucketName": "amplify-amplifyfbf8f167262e4-staging-44239-deployment",
+          "s3Key": "amplify-builds/bigdataproject001432b0-72522b73724435766169-build.zip"
+        },
+        "bigdataprojecta1fe940d": {
+          "deploymentBucketName": "amplify-amplifyfbf8f167262e4-staging-44239-deployment",
+          "s3Key": "amplify-builds/bigdataprojecta1fe940d-5754735630706e696d63-build.zip"
+        }
+      },
+      "api": {
+        "apifd318e7f": {}
       }
     }
   }

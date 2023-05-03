@@ -1,4 +1,20 @@
 {
+  "api": {
+    "apifd318e7f": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "bigdataprojecta1fe940d"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "bigdataproject8635ff21": {
       "customAuth": false,
@@ -23,6 +39,53 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "bigdataproject001432b0": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "bigdataprojecta1fe940d": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_bigdataproject001432b0_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "bigdataproject001432b0"
+        }
+      ]
+    },
+    "AMPLIFY_function_bigdataproject001432b0_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "bigdataproject001432b0"
+        }
+      ]
+    },
+    "AMPLIFY_function_bigdataprojecta1fe940d_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "bigdataprojecta1fe940d"
+        }
+      ]
+    },
+    "AMPLIFY_function_bigdataprojecta1fe940d_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "bigdataprojecta1fe940d"
+        }
+      ]
     }
   }
 }

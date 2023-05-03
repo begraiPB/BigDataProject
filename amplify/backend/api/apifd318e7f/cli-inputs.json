@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/items": {
+      "name": "/items",
+      "lambdaFunction": "bigdataprojecta1fe940d",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
