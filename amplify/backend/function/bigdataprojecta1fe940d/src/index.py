@@ -46,22 +46,47 @@ def handler(event, context):
   print('received event:')
   print(event)
 
-  numbers = [5, 5, 1, 1, 1, 1]
-  query_str = "SELECT age, AVG(trip_duration) AS avg_trip_duration FROM bigdataproject.ebikedatatable_001 GROUP BY age;"
   
-  result = client_redshift.execute_statement(Database= 'dev', SecretArn= secret_arn, Sql= query_str, ClusterIdentifier= cluster_id)
-  print("API successfully executed")
-  time.sleep(2.4)
-  response = client_redshift.get_statement_result(
-        Id=result['Id']
-    )
 
-  data = response['Records']
+  queryType = event['queryStringParameters']['queryType']
 
-  output = []
-  for datapoint in data:
-    tup = { "age": datapoint[0]['longValue'], "avg_trip_duration": datapoint[1]['longValue']}
-    output.append(tup)
+  if queryType == "ageAvgTripDur":
+    query_str = "SELECT age, AVG(trip_duration) AS avg_trip_duration FROM bigdataproject.ebikedatatable_001 GROUP BY age;"
+    
+    result = client_redshift.execute_statement(Database= 'dev', SecretArn= secret_arn, Sql= query_str, ClusterIdentifier= cluster_id)
+    print("API successfully executed")
+    time.sleep(2.4)
+    response = client_redshift.get_statement_result(
+            Id=result['Id']
+        )
+
+    data = response['Records']
+
+    output = []
+    for datapoint in data:
+        tup = { "age": datapoint[0]['longValue'], "avg_trip_duration": datapoint[1]['longValue']}
+        output.append(tup)
+
+  elif queryType == "genderRatio":
+    query_str = 'SELECT gender, COUNT(id_no) FROM "dev"."bigdataproject"."ebikedatatable_001" GROUP BY gender;'
+    
+    result = client_redshift.execute_statement(Database= 'dev', SecretArn= secret_arn, Sql= query_str, ClusterIdentifier= cluster_id)
+    print("API successfully executed")
+    time.sleep(4)
+    response = client_redshift.get_statement_result(
+            Id=result['Id']
+        )
+
+    data = response['Records']
+    print(data)
+
+
+    output = {}
+    for datapoint in data:
+        output[datapoint[0]['stringValue']] = datapoint[1]['longValue']
+
+  else:
+    output = [5, 5, 1, 1, 1, 1]
 
   return {
       'statusCode': 200,

@@ -10,6 +10,7 @@ class BarChart extends Component {
 
         const data = await API.get('apifd318e7f', '/items', {
             queryStringParameters: {
+                "queryType": "Dummy"
             }
           });
 
@@ -29,7 +30,7 @@ class BarChart extends Component {
             .attr("fill", "green");
     }
     render() {
-        return <div id={"#" + this.props.id}></div>
+        return <div id={"#2" + this.props.id}></div>
     }
 }
 export default BarChart;

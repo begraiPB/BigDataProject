@@ -1,5 +1,7 @@
 import logo from "./logo.svg";
 import BarChartAgeAvRide from './BarChartAgeAvRide'
+import BarChart from './BarChart'
+import PieChart from './PieChart'
 import "@aws-amplify/ui-react/styles.css";
 import {
   withAuthenticator,
@@ -19,6 +21,7 @@ const App = ({ signOut, user }) => {
                     <Button onClick={signOut}>Sign Out</Button>
                 </View>
                 <BarChartAgeAvRide /> 
+                <PieChart /> 
             </div> )
 }
 export default withAuthenticator(App);

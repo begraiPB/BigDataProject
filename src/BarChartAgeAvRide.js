@@ -10,6 +10,7 @@ class BarChartAgeAvRide extends Component {
 
         const data = await API.get('apifd318e7f', '/items', {
             queryStringParameters: {
+                "queryType": "ageAvgTripDur"
             }
           });
 
@@ -99,7 +100,7 @@ class BarChartAgeAvRide extends Component {
 
     }
     render() {
-        return <div id={"#" + this.props.id}></div>
+        return <div id={"#3" + this.props.id}></div>
     }
 }
 export default BarChartAgeAvRide;
