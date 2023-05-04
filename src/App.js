@@ -1,5 +1,5 @@
 import logo from "./logo.svg";
-import BarChart from './BarChart'
+import BarChartAgeAvRide from './BarChartAgeAvRide'
 import "@aws-amplify/ui-react/styles.css";
 import {
   withAuthenticator,
@@ -18,7 +18,7 @@ const App = ({ signOut, user }) => {
                     </Card>
                     <Button onClick={signOut}>Sign Out</Button>
                 </View>
-                <BarChart /> 
+                <BarChartAgeAvRide /> 
             </div> )
 }
 export default withAuthenticator(App);
