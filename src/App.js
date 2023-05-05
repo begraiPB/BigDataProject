@@ -13,7 +13,7 @@ import {
   Card,
 } from "@aws-amplify/ui-react";
 import PieChartGenderAvAge from "./PieChartGenderAvAge";
-import BarChartYearTrips from "./BarChartYearTrips";
+import LineChartYearTrips from "./LineChartYearTrips";
 
 const App = ({ signOut, user }) => {
     return (<div>
@@ -23,12 +23,12 @@ const App = ({ signOut, user }) => {
                     </Card>
                     <Button onClick={signOut}>Sign Out</Button>
                 </View>
-                <Heading level={3}>Data Analysis of Divvy eBike Userrs in Chicago</Heading>
+                <Heading level={3}>Data Analysis of Divvy eBike Users in Chicago</Heading>
                 <div className="wrapper">
                 <div id="chart1" className="item"><BarChartAgeAvRide /></div>
                 <div id="chart2"className="item"><PieChart /> </div>
                 <div id="chart3" className="item"><PieChartGenderAvAge /> </div>
-                <div id="chart4" className="item"><BarChartYearTrips /></div>
+                <div id="chart4" className="item"><LineChartYearTrips /></div>
                 </div>
             </div> )
 }
