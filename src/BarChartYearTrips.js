@@ -67,7 +67,7 @@ class BarChartYearTrips extends Component {
         return height - yScale(d.numtrips); 
         }); 
 
-        g.append("g") 
+        svg.append("g") 
         .attr("transform", "translate(0," + height + ")") 
         .call(d3.axisBottom(xScale)) 
         .append("text") 
@@ -78,7 +78,7 @@ class BarChartYearTrips extends Component {
         .attr("font-size", "15px") 
         .text("Year"); 
 
-        g.append("g") 
+        svg.append("g") 
         .call(d3.axisLeft(yScale)) 
         .append("text") 
         .attr("transform", "rotate(-90)") 

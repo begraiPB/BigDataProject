@@ -14,11 +14,6 @@ class LineChartYearTrips extends Component {
             }
           });
 
-          var parseTime = d3.timeParse("%Y");
-          data.forEach(function (d) {
-            d.year = parseTime(d.year);
-            });
-
         var margin = {top: 30, right: 30, bottom: 30, left: 60},
         width = 960 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
@@ -32,16 +27,19 @@ class LineChartYearTrips extends Component {
                 "translate(" + margin.left + "," + margin.top + ")");
 
         // Add X axis --> it is a date format
-        var x = d3.scaleTime()
+        var x = d3.scaleLinear()
         .domain(d3.extent(data, function(d) { return d.year; }))
         .range([ 0, width ]);
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x).tickFormat(d3.timeFormat('%b %d')))
-            .append("text")
-            .attr("x", (960+90)/2) //middle of the xAxis
-            .attr("y", "50") // a little bit below xAxis
-            .text("Year");
+            .call(d3.axisBottom(x).ticks(5))
+            .append("text") 
+            .attr("y", height - 140) 
+            .attr("x", width - 400) 
+            .attr("text-anchor", "end") 
+            .attr("stroke", "black") 
+            .attr("font-size", "15px") 
+            .text("Year"); 
 
         // Add Y axis
         var y = d3.scaleLinear()
@@ -61,13 +59,28 @@ class LineChartYearTrips extends Component {
         .y(function(d) { return y(d.numtrips) })
         )
 
-        svg 
-        .append("text") 
+        svg.append("text") 
         .attr("transform", "translate(100,0)") 
         .attr("x", 200) 
         .attr("y", 0) 
         .attr("font-size", "24px") 
-        .text("User trend for Divvy eBike Usage From"); 
+        .text("User trend for Divvy eBike Usage From 2013 to 2019"); 
+
+        svg 
+        .append("text") 
+        .attr("transform", "translate(100,0)") 
+        .attr("x", 400) 
+        .attr("y", height+30) 
+        .attr("font-size", "12px") 
+        .text("Year"); 
+
+        svg.append("text") 
+        .attr("transform", "rotate(-90)") 
+        .attr("x", -300) 
+        .attr("y", 15) 
+        .attr("dy", "-5.1em")
+        .attr("font-size", "12px") 
+        .text("Number of Users"); 
     }
     render() {
         return <div id={"#3" + this.props.id}></div>
