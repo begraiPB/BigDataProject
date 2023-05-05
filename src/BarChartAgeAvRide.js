@@ -93,7 +93,7 @@ class BarChartAgeAvRide extends Component {
         svg 
         .append("text") 
         .attr("transform", "translate(100,0)") 
-        .attr("x", 200) 
+        .attr("x", width/2 - margin) 
         .attr("y", 50) 
         .attr("font-size", "24px") 
         .text("Average Trip Duration Per Age"); 
