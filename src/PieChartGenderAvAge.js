@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import * as d3 from 'd3'
 import { API } from 'aws-amplify';
 
-class PieChart extends Component {
+class PieChartGenderAvAge extends Component {
     async componentDidMount() {
         await this.drawChart();
     }
@@ -10,7 +10,7 @@ class PieChart extends Component {
 
         const data = await API.get('apifd318e7f', '/items', {
             queryStringParameters: {
-                "queryType": "genderRatio"
+                "queryType": "genderAvgAge"
             }
           });
 
@@ -69,11 +69,10 @@ class PieChart extends Component {
         .attr("x", height - (margin.top / 2))
         .attr("text-anchor", "middle")  
         .style("font-size", "24px") 
-        .style("text-decoration", "underline")  
-        .text("Gender Distribution of eBike Users");
+        .text("Average Age of eBike Users by Gender");
     }
     render() {
         return <div id={"#" + this.props.id}></div>
     }
 }
-export default PieChart;
+export default PieChartGenderAvAge;

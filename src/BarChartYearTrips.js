@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import * as d3 from 'd3'
 import { API } from 'aws-amplify';
 
-class BarChartAgeAvRide extends Component {
+class BarChartYearTrips extends Component {
     async componentDidMount() {
         await this.drawChart();
     }
@@ -10,15 +10,15 @@ class BarChartAgeAvRide extends Component {
 
         const data = await API.get('apifd318e7f', '/items', {
             queryStringParameters: {
-                "queryType": "ageAvgTripDur"
+                "queryType": "yearNumTrips"
             }
           });
 
-        const sortedData = data.slice().sort((a, b) => d3.ascending(a.age, b.age))
+        const sortedData = data.slice().sort((a, b) => d3.ascending(a.year, b.year))
 
         console.log(sortedData)
 
-        const svg = d3.select("#chart1")
+        const svg = d3.select("#chart3")
                     .append("svg")
                     .attr("width", 1600)
                     .attr("height", 800);
@@ -34,13 +34,13 @@ class BarChartAgeAvRide extends Component {
 
         xScale.domain( 
             sortedData.map(function (d) { 
-            return d.age; 
+            return d.year; 
         }) 
         ); 
         yScale.domain([ 
             0, 
             d3.max(sortedData, function (d) { 
-                return d.avg_trip_duration; 
+                return d.numtrips; 
             }), 
         ]); 
 
@@ -57,14 +57,14 @@ class BarChartAgeAvRide extends Component {
         .append("rect") 
         .attr("class", "bar") 
         .attr("x", function (d) { 
-        return xScale(d.age); 
+        return xScale(d.year); 
         }) 
         .attr("y", function (d) { 
-        return yScale(d.avg_trip_duration); 
+        return yScale(d.numtrips); 
         }) 
         .attr("width", xScale.bandwidth()) 
         .attr("height", function (d) { 
-        return height - yScale(d.avg_trip_duration); 
+        return height - yScale(d.numtrips); 
         }); 
 
         g.append("g") 
@@ -76,7 +76,7 @@ class BarChartAgeAvRide extends Component {
         .attr("text-anchor", "end") 
         .attr("stroke", "black") 
         .attr("font-size", "15px") 
-        .text("Age"); 
+        .text("Year"); 
 
         g.append("g") 
         .call(d3.axisLeft(yScale)) 
@@ -88,7 +88,7 @@ class BarChartAgeAvRide extends Component {
         .attr("text-anchor", "end") 
         .attr("stroke", "black") 
         .attr("font-size", "15px") 
-        .text("Average Trip Duration"); 
+        .text("Number of Trips"); 
 
         svg 
         .append("text") 
@@ -96,11 +96,11 @@ class BarChartAgeAvRide extends Component {
         .attr("x", 200) 
         .attr("y", 50) 
         .attr("font-size", "24px") 
-        .text("Average Trip Duration Per Age"); 
+        .text("User trend for Divvy eBike Usage"); 
 
     }
     render() {
         return <div id={"#3" + this.props.id}></div>
     }
 }
-export default BarChartAgeAvRide;
+export default BarChartYearTrips;

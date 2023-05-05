@@ -24,7 +24,7 @@
         },
         "bigdataprojecta1fe940d": {
           "deploymentBucketName": "amplify-amplifyfbf8f167262e4-staging-44239-deployment",
-          "s3Key": "amplify-builds/bigdataprojecta1fe940d-7972676c656232693356-build.zip"
+          "s3Key": "amplify-builds/bigdataprojecta1fe940d-6e3153634e37302f3330-build.zip"
         }
       },
       "api": {

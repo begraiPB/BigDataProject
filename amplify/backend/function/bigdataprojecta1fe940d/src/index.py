@@ -51,7 +51,7 @@ def handler(event, context):
   queryType = event['queryStringParameters']['queryType']
 
   if queryType == "ageAvgTripDur":
-    query_str = "SELECT age, AVG(trip_duration) AS avg_trip_duration FROM bigdataproject.ebikedatatable_001 GROUP BY age;"
+    query_str = "SELECT age, AVG(trip_duration) AS avg_trip_duration FROM bigdataproject.ebikedatatable_001 WHERE age > 1 GROUP BY age;"
     
     result = client_redshift.execute_statement(Database= 'dev', SecretArn= secret_arn, Sql= query_str, ClusterIdentifier= cluster_id)
     print("API successfully executed")
@@ -65,6 +65,39 @@ def handler(event, context):
     output = []
     for datapoint in data:
         tup = { "age": datapoint[0]['longValue'], "avg_trip_duration": datapoint[1]['longValue']}
+        output.append(tup)
+
+  elif queryType == "genderAvgAge":
+    query_str = 'select gender, avg(age) as avg_age FROM "dev"."bigdataproject"."ebikedatatable_001" where age > 1group by gender'
+    
+    result = client_redshift.execute_statement(Database= 'dev', SecretArn= secret_arn, Sql= query_str, ClusterIdentifier= cluster_id)
+    print("API successfully executed")
+    time.sleep(2.4)
+    response = client_redshift.get_statement_result(
+            Id=result['Id']
+        )
+
+    data = response['Records']
+
+    output = {}
+    for datapoint in data:
+        output[datapoint[0]['stringValue']] = datapoint[1]['longValue']
+
+  elif queryType == "yearNumTrips":
+    query_str = 'select distinct(st_year) as Year, count(id_no) as Nbr_of_trips from "dev"."bigdataproject"."ebikedatatable_001" group by st_year order by 1;'
+    
+    result = client_redshift.execute_statement(Database= 'dev', SecretArn= secret_arn, Sql= query_str, ClusterIdentifier= cluster_id)
+    print("API successfully executed")
+    time.sleep(2.4)
+    response = client_redshift.get_statement_result(
+            Id=result['Id']
+        )
+
+    data = response['Records']
+
+    output = []
+    for datapoint in data:
+        tup = { "year": datapoint[0]['longValue'], "numtrips": datapoint[1]['longValue']}
         output.append(tup)
 
   elif queryType == "genderRatio":
@@ -84,6 +117,7 @@ def handler(event, context):
     output = {}
     for datapoint in data:
         output[datapoint[0]['stringValue']] = datapoint[1]['longValue']
+
 
   else:
     output = [5, 5, 1, 1, 1, 1]
