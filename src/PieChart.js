@@ -50,7 +50,7 @@ class PieChart extends Component {
         .join('path')
         .attr('d', arcGenerator)
         .attr('fill', function(d){ return(color(d.data[0])) })
-        .attr("stroke", "black")
+        .attr("stroke", "blue")
         .style("stroke-width", "2px")
         .style("opacity", 0.7);
 

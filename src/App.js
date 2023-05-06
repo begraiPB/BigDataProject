@@ -23,7 +23,7 @@ const App = ({ signOut, user }) => {
                     </Card>
                     <Button onClick={signOut}>Sign Out</Button>
                 </View>
-                <Heading level={3}>Data Analysis of Divvy eBike Users in Chicago</Heading>
+                <Heading level={3}>Pedaling into the Future: Analysis of Divvy Bike Trips</Heading>
                 <div className="wrapper">
                 <div id="chart1" className="item"><BarChartAgeAvRide /></div>
                 <div id="chart2"className="item"><PieChart /> </div>
