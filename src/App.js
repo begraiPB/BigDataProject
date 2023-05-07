@@ -19,7 +19,7 @@ const App = ({ signOut, user }) => {
     return (<div>
                 <View className="App">
                     <Card>
-                    <Heading level={5}>Welcome {user.username}! You are Authenticated!</Heading>
+                    <Heading level={5}>Welcome {user.username}!! You are Authenticated!</Heading>
                     </Card>
                     <Button onClick={signOut}>Sign Out</Button>
                 </View>
